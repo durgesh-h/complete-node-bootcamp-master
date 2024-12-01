@@ -45,6 +45,44 @@ const { reject } = require("superagent/lib/request-base");
 //---------------------------------------------------
 
 //----------------------PROMISES BUILD--------------
+// const readfilePro = (file) => {
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(file, (err, data) => {
+//       if (err) reject("I could not find that file!");
+//       resolve(data);
+//     });
+//   });
+// };
+
+// const writefilePro = (file, data) => {
+//   return new Promise((resolve, reject) => {
+//     fs.writeFile(file, data, (err) => {
+//       if (err) reject("Could not write file 😏");
+//       resolve("success!");
+//     });
+//   });
+// };
+
+// readfilePro(`${__dirname}/dog.txt`)
+//   .then((data) => {
+//     console.log(`breed: ${data}`);
+//     return superagent.get(`https://dog.ceo/api/breed/${data}/images/random`);
+//   })
+//   .then((res) => {
+//     //promise
+//     console.log(res.body.message);
+//     return writefilePro("dog-img.txt", res.body.message);
+//   })
+//   .then(() => {
+//     console.log("Random dog image saved to file!👍");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+//--------------------------------------------------------------------------
+
+//---------------------------Async/Await in Promises--------------------
 const readfilePro = (file) => {
   return new Promise((resolve, reject) => {
     fs.readFile(file, (err, data) => {
@@ -63,21 +101,22 @@ const writefilePro = (file, data) => {
   });
 };
 
-readfilePro(`${__dirname}/dog.txt`)
-  .then((data) => {
-    console.log(`breed: ${data}`);
-    return superagent.get(`https://dog.ceo/api/breed/${data}/images/random`);
-  })
-  .then((res) => {
-    //promise
-    console.log(res.body.message);
-    return writefilePro("dog-img.txt", res.body.message);
-  })
-  .then(() => {
-    console.log("Random dog image saved to file!👍");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+const getDogPic = async () => {
+  try {
+    const data = await readfilePro(`${__dirname}/dog.txt`);
+    console.log(`Breed: ${data}`);
 
-//--------------------------------------------------------------------------
+    const res = await superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+    console.log(res.body.message);
+
+    await writefilePro("dog-img.txt", res.body.message);
+    console.log("Random dog image saved to file!👍");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+getDogPic();
+//----------------------------------------------------------------------
