@@ -116,12 +116,13 @@ const getDogPic = async () => {
   } catch (err) {
     console.log(err);
   }
+  return "2: READY🐶";
 };
 
 getDogPic();
 //----------------------------------------------------------------------
 
-//------------------------working of async functions------------------------
+//------------------------working of async functions (IIFE)------------------------
 (async () => {
   try {
     console.log("1: Will get dog pics!");
@@ -132,3 +133,5 @@ getDogPic();
     console.log("ERROR 💥");
   }
 })();
+
+//------------------------working of async functions (IIFE)------------------------
