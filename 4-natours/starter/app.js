@@ -1,7 +1,8 @@
 const express = require('express');
 const fs = require('fs');
-
 const app = express();
+const port = 3000;
+
 app.use(express.json());
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
@@ -13,19 +14,6 @@ app.get('/api/v1/tours', (req, res) => {
 });
 
 app.get('/api/v1/tours/:id', (req, res) => {
-  console.log(req.params.id);
-  const id = req.params.id * 1;
-  const tour = tours.find((el) => el.id == id);
-  if (!tour) {
-    return res.status(404).json({
-      status: 'Failed',
-      message: 'Invalid Id',
-    });
-  }
-  res.status(200).json({ status: 'Success', data: { tour } });
-});
-
-app.patch('/api/v1/tours/:id', (req, res) => {
   const id = req.params.id * 1;
   const tour = tours.find((el) => el.id == id);
   if (!tour) {
@@ -55,7 +43,30 @@ app.post('/api/v1/tours', (req, res) => {
     }
   );
 });
-const port = 3000;
+
+app.patch('/api/v1/tours/:id', (req, res) => {
+  const id = req.params.id * 1;
+  const tour = tours.find((el) => el.id == id);
+  if (!tour) {
+    return res.status(404).json({
+      status: 'Failed',
+      message: 'Invalid Id',
+    });
+  }
+  res.status(200).json({ status: 'Success', data: { tour } });
+});
+
+app.delete('/api/v1/tours/:id', (req, res) => {
+  const id = req.params.id * 1;
+  const tour = tours.find((el) => el.id == id);
+  if (!tour) {
+    return res.status(404).json({
+      status: 'Failed',
+      message: 'Invalid Id',
+    });
+  }
+  res.status(204).json({ status: 'Success', data: null });
+});
 
 app.listen(port, () => {
   console.log(`App is listening on port: ${port}`);
