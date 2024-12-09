@@ -1,3 +1,4 @@
+const { error } = require('console');
 const express = require('express');
 const fs = require('fs');
 const morgan = require('morgan');
@@ -83,6 +84,36 @@ const deleteTour = (req, res) => {
   res.status(204).json({ status: 'Success', data: null });
 };
 
+const createUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'internal server error',
+  });
+};
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'internal server error',
+  });
+};
+const getUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'internal server error',
+  });
+};
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'internal server error',
+  });
+};
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'internal server error',
+  });
+};
 // 3) ROUTES
 
 // app.get('/api/v1/tours', getAllTour);
@@ -102,6 +133,13 @@ app
   .patch(updateTour)
   .delete(deleteTour);
 
+app.route('/api/v1/users').get(getAllUsers).post(createUser);
+
+app
+  .route('/api/v1/users/:id')
+  .get(getUser)
+  .patch(updateUser)
+  .delete(deleteUser);
 // 4) START SERVER
 
 app.listen(port, () => {
