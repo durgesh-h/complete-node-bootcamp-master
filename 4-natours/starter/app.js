@@ -13,7 +13,8 @@ app.use((req, res, next) => {
   next();
 });
 app.use(morgan('dev'));
-
+//Serving static file
+app.use(express.static(`${__dirname}/public`));
 // 3) ROUTES
 
 // app.get('/api/v1/tours', getAllTour);
