@@ -6,3 +6,4 @@
 6.3-6.9 Local mongoDB Skipped
 6.10 Install Compass
 6.11 Initializes Atlas- Hosted DB
+6.12 Connected to Hosted DB
