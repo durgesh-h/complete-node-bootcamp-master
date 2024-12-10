@@ -3,3 +3,4 @@
 4.9 Middleware - Request/Response
 6.1 Intro mongodb
 6.2 What is mongoDB
+6.3-6.9 Local mongoDB Skipped
