@@ -4,3 +4,4 @@
 6.1 Intro mongodb
 6.2 What is mongoDB
 6.3-6.9 Local mongoDB Skipped
+6.10 Install Compass
