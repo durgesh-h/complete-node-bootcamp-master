@@ -4,7 +4,7 @@
   "description": "Learning Node, Express, MongoDB",
   "main": "app.js",
   "scripts": {
-    "start:dev": "nodemon server.js",
+    "start": "nodemon server.js",
     "start:prod": "set NODE_ENV=production && nodemon server.js"
   },
   "author": "Durgesh Prasad",
@@ -12,6 +12,8 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
+    "mongodb": "^6.11.0",
+    "mongoose": "^5.13.22",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
