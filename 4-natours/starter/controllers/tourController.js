@@ -119,7 +119,19 @@ exports.updateTour = async (req, res) => {
   // res.status(200).json({ status: 'Success', data: { tour } });
 };
 
-exports.deleteTour = (req, res) => {
+exports.deleteTour = async (req, res) => {
+  try {
+    const tours = await Tours.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: 'Success',
+      data: null,
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
+  }
   // const id = req.params.id * 1;
   // const tour = tours.find((el) => el.id == id);
   // res.status(204).json({ status: 'Success', data: null });
