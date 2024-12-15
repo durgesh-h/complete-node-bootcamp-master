@@ -17,3 +17,4 @@
 7.6 Backend Architecture (MVC)
 10 Error Handeling with Express: Section Intro
 11.3 Overview of Error Handling.....
+12.4 Authentication, Authorization and security Intro
