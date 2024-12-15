@@ -63,6 +63,8 @@ module.exports = (err, req, res, next) => {
     if (error.name === 'CastError') error = handleCastErrorDB(error);
     // 12 Handling duplicate database fields
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
+    // 12.1 Handling mongoose validation errors
+
     if (error.name === 'ValidationError')
       error = handleValidationErrorDB(error);
 
